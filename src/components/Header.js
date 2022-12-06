@@ -25,17 +25,18 @@ const Header = () => {
     const logoutuser = async () => {
         let token = localStorage.getItem("usersdatatoken");
 
-        const res = await fetch("/logout", {
+        const res = await fetch("http://localhost:8010/logout", {
+            mode: 'no-cors',
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": token,
-                Accept: "application/json"
+                "Authorization": "token",
+                "Accept": "application/json"
             },
             credentials: "include"
         });
 
-        const data = await res.json();
+        const data = await res.text();
         console.log(data);
 
         if (data.status == 201) {

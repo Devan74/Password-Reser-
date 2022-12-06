@@ -7,10 +7,9 @@ import PasswordReset from "./components/PasswordReset";
 import ForgotPassword from "./components/ForgotPassword";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { Routes, Route, useNavigate ,BrowserRouter} from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import { useEffect, useContext, useState } from "react";
 import { LoginContext } from "./components/ContextProvider/Context";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -18,14 +17,14 @@ function App() {
   const [data, setData] = useState(false);
 
   const { logindata, setLoginData } = useContext(LoginContext);
-console.log(logindata);
+
 
   const history = useNavigate();
 
   const DashboardValid = async () => {
     let token = localStorage.getItem("usersdatatoken");
 
-    const res = await fetch("/validuser", {
+    const res = await fetch("http://localhost:8010/validuser", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +34,7 @@ console.log(logindata);
 
     const data = await res.json();
 
-    if (data.status === 401 || !data) {
+    if (data.status == 401 || !data) {
       console.log("user not valid");
     } else {
       console.log("user verify");
@@ -50,7 +49,7 @@ console.log(logindata);
       setData(true)
     },2000)
 
-  })
+  }, [])
 
   return (
     <>
@@ -58,7 +57,7 @@ console.log(logindata);
         data ? (
           <>
             <Header />
-            <BrowserRouter>
+
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
@@ -67,7 +66,6 @@ console.log(logindata);
               <Route path="/forgotpassword/:id/:token" element={<ForgotPassword />} />
               <Route path="*" element={<Error />} />
             </Routes>
-            </BrowserRouter>
           </>
 
         ) : <Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center", height: "100vh" }}>
