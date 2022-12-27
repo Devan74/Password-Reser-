@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { NavLink ,useNavigate} from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import "./mix.css"
+import {URL} from '../App';
 
 const Login = () => {
 
@@ -52,7 +53,7 @@ const Login = () => {
             // console.log("user login succesfully done");
 
 
-            const data = await fetch("http://localhost:8010/login",{
+            const data = await fetch(`${URL}/login`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"

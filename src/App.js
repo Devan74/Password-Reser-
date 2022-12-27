@@ -11,6 +11,7 @@ import { Routes, Route, useNavigate } from "react-router-dom"
 import { useEffect, useContext, useState } from "react";
 import { LoginContext } from "./components/ContextProvider/Context";
 
+export const URL="http://localhost:8010"
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
   const DashboardValid = async () => {
     let token = localStorage.getItem("usersdatatoken");
 
-    const res = await fetch("http://localhost:8010/validuser", {
+    const res = await fetch(`${URL}/validuser`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +64,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/dash" element={<Dashboard />} />
               <Route path="/password-reset" element={<PasswordReset />} />
-              <Route path="/forgotpassword/:id/:token" element={<ForgotPassword />} />
+              <Route path="/forgotpassword/:id/:token" element={<ForgotPassword />}/>
               <Route path="*" element={<Error />} />
             </Routes>
           </>

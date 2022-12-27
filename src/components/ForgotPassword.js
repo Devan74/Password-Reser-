@@ -3,7 +3,7 @@ import { useNavigate, useParams, NavLink } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import {URL} from '../App';
 const ForgotPassword = () => {
 
     const { id, token } = useParams();
@@ -17,7 +17,7 @@ const ForgotPassword = () => {
     const [message, setMessage] = useState("");
 
     const userValid = async () => {
-        const res = await fetch(`http://localhost:8010/forgotpassword/${id}/${token}`, {
+        const res = await fetch(`${URL}/forgotpassword/${id}/${token}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
                 position: "top-center"
             });
         } else {
-            const res = await fetch(`http://localhost:8010/${id}/${token}`, {
+            const res = await fetch(`${URL}/${id}/${token}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -90,9 +90,9 @@ const ForgotPassword = () => {
                                 </div>
 
                                 <form>
-                                    {message ? <p style={{ color: "green", fontWeight: "bold" }}>Password Succesfulyy Update </p> : ""}
+                                    {message ? <p style={{ color: "green", fontWeight: "bold" }}>Password Succesfully Update </p> : ""}
                                     <div className="form_input">
-                                        <label htmlFor="password">New password</label>
+                                        <label htmlFor="password">New Password</label>
                                         <input type="password" value={password} onChange={setval} name="password" id="password" placeholder='Enter Your new password' />
                                     </div>
 

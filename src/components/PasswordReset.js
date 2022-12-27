@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
+import {URL} from '../App';
 
 const PasswordReset = () => {
 
@@ -23,7 +24,7 @@ const PasswordReset = () => {
                 position: "top-center"
             });
         } else {
-            const res = await fetch("http://localhost:8010/sendpasswordlink", {
+            const res = await fetch(`${URL}/sendpasswordlink`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -52,7 +53,7 @@ const PasswordReset = () => {
                         <h1>Enter Your Email</h1>
                     </div>
 
-                    {message ? <p style={{ color: "green", fontWeight: "bold" }}>pasword reset link send Succsfully in Your Email</p> : ""}
+                    {message ? <p style={{ color: "green", fontWeight: "bold" }}>Password Reset Link Send Succsfully In Your Email</p> : ""}
                     <form>
                         <div className="form_input">
                             <label htmlFor="email">Email</label>

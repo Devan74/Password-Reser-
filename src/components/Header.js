@@ -4,7 +4,8 @@ import "./header.css"
 import { LoginContext } from './ContextProvider/Context';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate , NavLink } from "react-router-dom"
+import { useNavigate , NavLink } from "react-router-dom";
+import {URL} from '../App';
 
 const Header = () => {
 
@@ -25,18 +26,18 @@ const Header = () => {
     const logoutuser = async () => {
         let token = localStorage.getItem("usersdatatoken");
 
-        const res = await fetch("http://localhost:8010/logout", {
-            mode: 'no-cors',
+        const res = await fetch(`${URL}/logout`, {
+
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "token",
-                "Accept": "application/json"
+                "Authorization": token,
+                Accept: "application/json"
             },
             credentials: "include"
         });
 
-        const data = await res.text();
+        const data = await res.json()        ;
         console.log(data);
 
         if (data.status == 201) {
@@ -62,7 +63,7 @@ const Header = () => {
             <header>
                 <nav>
                     
-                <NavLink to="/"><h1>Deva Cloud</h1></NavLink>
+                <NavLink to="/"><h1>Dev Cloud</h1></NavLink>
                     <div className="avtar">
                         {
                             logindata.ValidUserOne ? <Avatar style={{ background: "salmon", fontWeight: "bold", textTransform: "capitalize" }} onClick={handleClick}>{logindata.ValidUserOne.fname[0].toUpperCase()}</Avatar> :
