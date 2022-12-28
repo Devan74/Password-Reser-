@@ -11,7 +11,7 @@ import { Routes, Route, useNavigate } from "react-router-dom"
 import { useEffect, useContext, useState } from "react";
 import { LoginContext } from "./components/ContextProvider/Context";
 
-export const URL="http://localhost:8010"
+export const URL="https://password-reset1.onrender.com"
 
 function App() {
 
